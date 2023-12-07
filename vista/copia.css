@@ -1,0 +1,469 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* INICIO DE LA BARRA DE NAVEGACIÓN*/
+.navbar {
+    background-color: #111f55;
+    color: rgb(173, 181, 199);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: max-content;
+}
+.contenedorlogo {
+    height: 80%;
+}
+.logo {
+    width: 60px;
+    height: auto;
+}
+.nombreEmpresa {
+    font-size: 35px;
+    font-weight: bold;
+}
+.menu {
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.menu a button{
+    text-decoration: none;
+    margin: 0px;
+    transition: color 0.3s ease;
+    color: rgb(173, 181, 199);
+    background-color: inherit;
+    border: none;
+}
+.menu a button:hover {
+    color: #24b3d4;
+}
+.menu a img {
+    height: 20px;
+    color:#24b3d4;
+    text-emphasis-color: #24b3d4;
+}
+.menu i{
+    color:#24b3d4;
+    height: 50px;
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: rgb(173, 181, 199);
+    margin: 3px 0;
+}
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+    .menu.show-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        /*left: 0;*/
+        right: 0;
+        /*width: 100%;*/
+        width:max-content;
+        background-color: #111f55;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .menu.show-menu a {
+        margin: 15px;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+}
+/* FIN DE LA BARRA DE NAVEGACIÓN*/
+
+/* INICIO FORMULARIO LOG IN*/
+.bodyLogIn {
+    background-color: #dce2e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+.logInContainer {
+    min-height: max-content;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+}
+.logInContainer h2 {
+    margin:0px;
+    margin-bottom: 6px;
+}
+.logInContainer .credenciales, .footerLogIn {
+    display: flex;
+    flex-direction: column;
+}
+.logInContainer .credenciales input, button {
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+.logInContainer .footerLogIn a {
+    margin: 0px;
+    margin-top: 8px;
+}
+/* FINAL DEL FORMULARIO LOG IN*/
+
+/* INICIO DEL FORMULARIO PARA EL INGRESO DE PRODUCTOS*/
+.contenedorIngresoProductos {
+    background-color: #dce2e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.formInventory {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    height: max-content;
+}
+.formInventory h2{
+    margin-bottom: 16px;
+    text-align: center;
+}
+.formInventory span {
+    margin-bottom: 16px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    /*border: 1px solid #ccc;*/
+    overflow: hidden;
+    background-color: inherit;
+}
+.formInventory span:hover {
+    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.1);
+}
+.formInventory span label, input, select {
+    cursor: pointer;
+}
+.formInventory span input:active, select:active {
+    transform: translate(1px, -5px);
+}
+.formInventory span input:not(:focus), select:not(:focus) {
+    background-color: inherit;
+    color: #5e5f60;
+}
+.formInventory label {
+    background-color: inherit;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 8px;
+    min-width: max-content;
+    /*width:50%;*/
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: 0.5px solid #a4a5a9;
+}
+.formInventory span input, select {
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 8px;
+    border: none;
+    width: 100%;
+    /*width:50%;*/
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #dce2e4;
+    transition: transform 0.3s ease;
+}
+.formInventory span select:not(:focus) {
+    background-color: #dce2e4;
+}
+.formInventory span input:not(:focus) {
+    background-color: #dce2e4;
+}
+.formInventory span input:valid {
+    background-color: inherit; /* Color de fondo después de haber ingresado un valor */
+    color: black;
+    font-size: medium;
+}
+/* Estilo cuando se ha seleccionado una opción en el select */
+.formInventory span select:valid {
+    background-color: inherit; /* Color de fondo después de haber seleccionado una opción */
+    color: black;
+    font-size: medium;
+}
+
+.formInventory button {
+    background-color: c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: bolder;
+}
+.formInventory button:hover {
+    background-color: #01458e;
+}
+.cragarImagen label {
+    max-width: min-content;
+}
+/* FIN DEL FORMULARIO PARA EL INGRESO DE PRODUCTOS*/
+
+/* INICIO DEL FOOTER */
+.footer {
+    background-color: #111f55;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    color: rgb(173, 181, 199);
+}
+.redesSociales {
+    display: flex;
+    justify-content: space-around;
+    color: #24b3d4;
+}
+.redesSociales i {
+    font-size: 30px;
+}
+.columnasFooter {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.columnaFooter {
+    padding: 5px;
+    margin: 5px;
+}
+.columnaFooter h3 {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 8px;
+}
+.columnaFooter:nth-child(1)  {
+    width: min-content;
+}
+.columnaFooter:nth-child(1) .contenidoColumnaFooter label {
+    font-size: 12px;
+    text-align: justify;
+    line-height: 0.5;
+}
+.columnaFooter:nth-child(1) .contenidoColumnaFooter li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.columnaFooter:nth-child(1) .inputCorreo, .footer-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+.columnaFooter:nth-child(1) .footer-button {
+    background-color: #007bff;
+    width: 100%;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+.columnaFooter:nth-child(2) li i {
+    font-size: 18px;
+}
+.contenidoColumnaFooter ul {
+    margin: 0;
+    padding: 0;
+}
+.contenidoColumnaFooter ul li {
+    list-style: none;
+}
+/* FINAL DEL FOOTER */
+
+/* adminGestionInventario.php*/
+/* Aquí van los estilos de la página, sus botones y de la tabla de inventario*/
+.contenedorInventario {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.contenedorInventario h2{
+    color: #333;
+}
+.contenedorInventario button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.contenedorInventario table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+.contenedorInventario table th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.contenedorInventario table th {
+    background-color: #4CAF50;
+    color: white;
+}
+/** Da color a las filas de forma alternada */
+.contenedorInventario table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.contenedorInventario table tr:hover {
+    background-color: #ddd;
+}
+/* Fin de adminGestionInventario.php*/
+
+/** INICIO DEL CATALOGO */
+.cuerpoCentral {
+    display: flex;
+    flex-direction: row;
+}
+.contenedorFiltro {
+    display: flex;
+    flex-direction: column;
+}
+.contenedorCatalogo {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-around;*/
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f4f4f4;
+
+    height: 75vh;
+    overflow-y: auto; /*barra de desplazamiento vertical*/
+}
+.producto {
+    border-radius: 10px;
+    overflow: hidden; /*Oculta lo que sobresale del contenedor*/
+    margin-right: 15px;
+    margin-bottom: 15px;
+    max-width: 180px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    min-height: max-content;
+}
+.producto:hover {
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+}
+.imgProducto {
+    width: 100%;
+    height: auto;
+}
+.tituloProducto {
+    margin: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-size:medium;
+}
+.precioProducto {
+    margin: 0px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #111f55;
+}
+.btnAgregar {
+    background-color: #111f55;
+    color:  #dce2e4;
+    font-weight: bolder;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.btnAgregar:hover {
+    background-color: white;
+    background-color:#01458e;
+    font-weight: bold;
+}
+/** FINAL DEL CATALOGO */
+
+/* INICIO DEL FILTRO DEL CATALOGO */
+.contenedorFiltro {
+    display: flex;
+    padding-top: 0px;
+    background-color:#ddd;
+    padding-top: 20px;
+
+    width: 160px;
+}
+/* Estilos para cada categoría */
+.categoria {
+    padding-left: 12px;
+}
+/* Estilos para los títulos de categoría */
+.categoria h3 {
+    font-size:smaller;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    color: #333;
+}
+/* Estilos para las subcategorías */
+.subcategorias {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+/* Estilos para cada ítem de subcategoría */
+.subcategorias li {
+    margin-bottom: 10px;
+}
+/* Estilos para las casillas de verificación */
+.subcategorias li label input{
+    margin-right: 2px;
+}
+/* Estilos para los enlaces de subcategoría */
+.subcategorias li label {
+    cursor: pointer;
+    color: #333;
+    font-size:smaller;
+    transition: color 0.3s ease;
+}
+/* Estilos al pasar el mouse sobre los enlaces de subcategoría */
+.subcategorias li label:hover {
+    color: #007BFF;
+}
+/* FINAL DEL FILTRO DEL CATALOGO*/

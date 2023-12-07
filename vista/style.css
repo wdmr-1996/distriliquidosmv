@@ -1,0 +1,819 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* INICIO DE LA BARRA DE NAVEGACIÓN*/
+.navbar {
+    background-color: #111f55;
+    color: rgb(173, 181, 199);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: max-content;
+}
+.contenedorlogo {
+    height: 80%;
+}
+.logo {
+    width: 60px;
+    height: auto;
+}
+.nombreEmpresa {
+    font-size: 35px;
+    font-weight: bold;
+}
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    justify-content: space-between;
+}
+.menu a {
+    text-decoration: none;
+}
+.menu a button {
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    font-size: large;
+    color: rgb(173, 181, 199);
+    transition: all 0.3s ease;
+}
+.menu a button:hover {
+    transform: scale(1.05);
+    color:#007bff;
+}
+.menu a button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Inicia sin ancho */
+    height: 2px; /* Altura de la línea de subrayado */
+    background-color: #007bff; /* Color del subrayado */
+    transition: width 0.3s ease; /* Animación de la anchura al pasar el cursor */
+}
+.menu a button:hover::before {
+    width: 100%; /* Aumenta la anchura al pasar el cursor para revelar la línea completa */
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: rgb(173, 181, 199);
+    margin: 3px 0;
+}
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+    .menu.show-menu {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        /*left: 0;*/
+        right: 0;
+        /*width: 100%;*/
+        width:max-content;
+        background-color: #111f55;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .menu.show-menu a {
+        margin: 15px;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+}
+/* FIN DE LA BARRA DE NAVEGACIÓN*/
+
+/* INICIO FORMULARIO LOG IN*/
+.bodyLogIn {
+    background-color: #dce2e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+.logInContainer {
+    min-height: max-content;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    padding: 32px 20px 32px 20px;
+    border-radius: 15px;
+}
+.logInContainer h2 {
+    margin:0px;
+    margin-bottom: 6px;
+}
+.logInContainer .credenciales, .footerLogIn {
+    display: flex;
+    flex-direction: column;
+}
+.logInContainer .credenciales input, button {
+    margin-top: 15px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+.logInContainer .credenciales button {
+    background-color:#111f55;
+    color: rgb(173, 181, 199);
+    font-size: medium;
+    transition: all 0.9s ease;
+}
+.logInContainer .credenciales button:hover {
+    background-color: #007bff;
+    color:rgb(228, 228, 237);
+    font-weight: bolder;
+}
+.logInContainer .footerLogIn a {
+    margin: 0px;
+    margin-top: 8px;
+}
+/* FINAL DEL FORMULARIO LOG IN*/
+
+/* INICIO DEL FORMULARIO PARA EL INGRESO DE PRODUCTOS*/
+.contenedorIngresoProductos {
+    background-color: #dce2e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.formInventory {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    height: max-content;
+}
+.formInventory h2{
+    margin-bottom: 16px;
+    text-align: center;
+}
+.formInventory span {
+    margin-bottom: 16px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    /*border: 1px solid #ccc;*/
+    overflow: hidden;
+    background-color: inherit;
+}
+.formInventory span:hover {
+    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.1);
+}
+.formInventory span label, input, select {
+    cursor: pointer;
+}
+.formInventory span input:active, select:active {
+    transform: translate(1px, -5px);
+}
+.formInventory span input:not(:focus), select:not(:focus) {
+    background-color: inherit;
+    color: #5e5f60;
+}
+.formInventory label {
+    background-color: inherit;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 8px;
+    min-width: max-content;
+    /*width:50%;*/
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: 0.5px solid #a4a5a9;
+}
+.formInventory span input, select {
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 8px;
+    border: solid 1px #a4a5a9;
+    width: 100%;
+    /*width:50%;*/
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #ddd;
+    transition: transform 0.3s ease;
+    color: rgb(0, 0, 0);
+}
+.formInventory span select:not(:focus) {
+    background-color:#ddd;
+}
+.formInventory span input:not(:focus) {
+    background-color:#ddd;
+}
+.formInventory span select:not(:hover) {
+    background-color: #ddd;
+}
+.formInventory span input:not(:hover) {
+    background-color: #ddd;
+}
+.formInventory span input:valid {
+    background-color: inherit; /* Color de fondo después de haber ingresado un valor */
+    color: black;
+    font-size: medium;
+}
+/* Estilo cuando se ha seleccionado una opción en el select */
+.formInventory span select:valid {
+    background-color: inherit; /* Color de fondo después de haber seleccionado una opción */
+    color: black;
+    font-size: medium;
+}
+.formInventory button {
+    background-color:#111f55;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: bolder;
+}
+.formInventory button:hover {
+    background-color: #01458e;
+}
+.cragarImagen label {
+    max-width: min-content;
+}
+/* FIN DEL FORMULARIO PARA EL INGRESO DE PRODUCTOS*/
+
+/* INICIO DEL FOOTER */
+.footer {
+    background-color: #111f55;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    color: rgb(173, 181, 199);
+}
+.redesSociales {
+    display: flex;
+    justify-content: space-around;
+    color: #24b3d4;
+}
+.redesSociales i {
+    font-size: 30px;
+}
+.columnasFooter {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.columnaFooter {
+    padding: 5px;
+    margin: 5px;
+}
+.columnaFooter h3 {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 8px;
+}
+.columnaFooter:nth-child(1)  {
+    width: min-content;
+}
+.columnaFooter:nth-child(1) .contenidoColumnaFooter label {
+    font-size: 12px;
+    text-align: justify;
+    line-height: 0.5;
+}
+.columnaFooter:nth-child(1) .contenidoColumnaFooter li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.columnaFooter:nth-child(1) .inputCorreo, .footer-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+.columnaFooter:nth-child(1) .footer-button {
+    background-color: #007bff;
+    width: 100%;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+.columnaFooter:nth-child(2) li i {
+    font-size: 18px;
+}
+.contenidoColumnaFooter ul {
+    margin: 0;
+    padding: 0;
+}
+.contenidoColumnaFooter ul li {
+    list-style: none;
+}
+/* FINAL DEL FOOTER */
+
+/* adminGestionInventario.php*/
+/* Aquí van los estilos de la página, sus botones y de la tabla de inventario*/
+.contenedorInventario {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.contenedorInventario h2{
+    color: #333;
+}
+.contenedorInventario button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.contenedorInventario table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+.contenedorInventario table th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.contenedorInventario table th {
+    background-color: #4CAF50;
+    color: white;
+}
+/** Da color a las filas de forma alternada */
+.contenedorInventario table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.contenedorInventario table tr:hover {
+    background-color: #ddd;
+}
+/* Fin de adminGestionInventario.php*/
+
+/** INICIO DEL CATALOGO */
+.cuerpoCentral {
+    display: flex;
+    flex-direction: row;
+}
+.contenedorFiltro {
+    display: flex;
+    flex-direction: column;
+}
+.contenedorCatalogo {
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-around;*/
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    padding-left: 30px;
+    background-color: #f4f4f4;
+
+    height: 75vh;
+    overflow-y: auto; /*barra de desplazamiento vertical*/
+}
+.producto {
+    border-radius: 10px;
+    overflow: hidden; /*Oculta lo que sobresale del contenedor*/
+    margin-right: 20px;
+    margin-bottom: 15px;
+    max-width: 200px;/**/
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    min-height: max-content;
+}
+.producto:hover {
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+}
+.imgProducto {
+    width: 100%;
+    height: auto;
+}
+.tituloProducto {
+    margin: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-size:medium;
+}
+.precioProducto {
+    margin: 0px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #111f55;
+}
+.btnAgregar {
+    background-color: #111f55;
+    color:  #dce2e4;
+    font-weight: bolder;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: color 0.3s ease;;
+}
+.btnAgregar:hover {
+    background-color: white;
+    background-color:#01458e;
+    font-weight: bold;
+}
+/** FINAL DEL CATALOGO */
+
+/* INICIO DEL FILTRO DEL CATALOGO */
+.contenedorFiltro {
+    display: flex;
+    padding-top: 0px;
+    background-color:#ddd;
+    padding-top: 20px;
+
+    width: 160px;
+}
+/* Estilos para cada categoría */
+.categoria {
+    padding-left: 12px;
+}
+/* Estilos para los títulos de categoría */
+.categoria h3 {
+    font-size:smaller;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    color: #333;
+}
+/* Estilos para las subcategorías */
+.subcategorias {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+/* Estilos para cada ítem de subcategoría */
+.subcategorias li {
+    margin-bottom: 10px;
+}
+/* Estilos para las casillas de verificación */
+.subcategorias li label input{
+    margin-right: 2px;
+}
+/* Estilos para los enlaces de subcategoría */
+.subcategorias li label {
+    cursor: pointer;
+    color: #333;
+    font-size:smaller;
+    transition: color 0.3s ease;
+}
+/* Estilos al pasar el mouse sobre los enlaces de subcategoría */
+.subcategorias li label:hover {
+    color: #007BFF;
+}
+/* FINAL DEL FILTRO DEL CATALOGO*/
+
+/* INICIO FORMULARIO SIGNIN EMPRESA*/
+.bodysignin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signinContainer {
+    background-color: #e1e1e2;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    padding: 32px 20px 32px 20px;
+    border-radius: 15px;
+    height: 70vh;
+}
+.signinContainer .credenciales {
+    background-color: #ffffff;
+}
+.signinContainer h2 {
+    max-width: 300px;
+    color:#5e5f60;
+    margin:0px;
+    margin-bottom: 6px;
+}
+.signinContainer .credenciales, .footerLogIn {
+    display: flex;
+    flex-direction: column;
+}
+.signinContainer .credenciales select, input, button {
+    margin-top: 15px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    background-color: #fcfcfd;
+}
+.signinContainer .credenciales button {
+    background-color:#111f55;
+    color: rgb(173, 181, 199);
+    font-size: medium;
+    transition: all 0.9s ease;
+}
+.signinContainer .credenciales button:hover {
+    background-color: #007bff;
+    color:rgb(228, 228, 237);
+    font-weight: bolder;
+}
+.signinContainer .footerLogIn a {
+    margin: 0px;
+    margin-top: 8px;
+}
+.bodySignin .signinContainer .credenciales div {
+    display: flex;
+    flex-direction: row;
+}
+.columnaSignin {
+    display: flex;
+    flex-direction: column;
+}
+/* FINAL DEL FORMULARIO SIGNIN EMPRESA*/
+
+/* INICIO DE SIGNINSELECT*/
+.contenedorMacro {
+    background-image: url('../imagenes/background/waterBackground.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.contenidoSigninSelect {
+    background-color: hsla(29, 92%, 5%, 0.5);
+    height: 78vh;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    justify-content: space-around;
+    width: 80%;
+    box-shadow: 0px 0px 60px hsla(29, 92%, 5%, 0.65);;
+}
+.contenidoSigninSelect section {
+    width: 85%;
+    height: max-content;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+.contenidoSigninSelect section img{
+    height: 4.5em;
+    width: 4.5em;
+}
+.contenidoSigninSelect section h2{
+    height: auto;
+}
+.contenidoSigninSelect section img {
+    width: 60px;
+    height: auto;
+}
+.contenidoSigninSelect article {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.contenidoSigninSelect .box:nth-child(1) {
+    width: 40%;
+    max-width: 300px;
+    background-color: rgb(157, 228, 14);
+}
+.contenidoSigninSelect .box:nth-child(2) {
+    width: 40%;
+    max-width: 300px;
+    background-color: rgb(14, 178, 228);
+}
+.contenidoSigninSelect .box a {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+}
+
+.contenidoSigninSelect .box i {
+    font-size: 3.5em;
+}
+.contenidoSigninSelect .box:hover {
+    background-color: rgb(26, 40, 147);
+}
+.contenidoSigninSelect .box {
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* FINAL DE SIGNINSELECT*/
+
+/* INICIO DEL CARRITO DE COMPRAS
+.bodyCarrito {
+    background-color: #dce2e4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+.bodyCarrito .carritoContainer {
+    background-color: #5e5f60;
+    display:flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+.bodyCarrito .carritoContainer .producto {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+}
+.bodyCarrito .carritoContainer .producto article:nth-child(1) {
+    width: 20px;
+    height: 50px;
+    background-color: red;
+}
+.bodyCarrito .carritoContainer .producto article:nth-child(2) {
+    width: 30px;
+    height: 50px;
+    background-color: rgb(0, 255, 132);
+}
+.bodyCarrito .carritoContainer .producto article:nth-child(3) {
+    width: 20px;
+    height: 50px;
+    background-color: rgb(0, 4, 255);
+}
+
+FINAL DEL CARRITO DE COMPRAS*/
+
+/* Inicio de los estilos para el carrito de compras */
+/* Final de los estilos para el carrito de compras */
+.bodyCarrito {
+    padding: 20px;
+    margin: 0;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e1e1e2;
+    overflow-y: auto;
+}
+.carritoContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+    width: max-content;
+}
+.carritoContainer h2 {
+    align-self: center;
+}
+.productoCarrito {
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #f2f2f2;
+}
+.productoCarrito img {
+    width: 150px;
+    min-height: 100%;
+    margin-right: 20px;
+    border-radius: 15px 0px 0px 15px;
+}
+.productoCarrito article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.productoNombre {
+    max-width: 200px;
+    font-weight: bold;
+    color:#5e5f60;
+    margin-bottom: 10px;
+}
+.productoNombre, .precio {
+    margin-bottom: 12px;
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+.cantidadNumero {
+    padding: 0;
+    width: 80px;/**/
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #e1e1e2;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
+.subtotal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.minus, .plus{
+    background-color: hsl(228, 67%, 20%, 0.8);
+    color:#f2f2f2;
+    width:1.8em;
+    height: 1.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.minus {
+    border-radius: 15px 0px 0px 15px;
+    padding-bottom: 5px;
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+}
+.plus {
+    border-radius: 0px 15px 15px 0px;
+    padding: 2.5px;
+}
+.btnEliminarItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: hsl(228, 67%, 20%, 0.8);
+    border-radius: 0px 15px 15px 0px;
+}
+.btnEliminarItem i{
+    margin-left: 10px;
+    margin-right: 10px;
+    color:#f2f2f2;
+}
+article .cantidadProducto {
+    font-size: 0.8em;
+    font-weight: 900;
+    display: flex;
+    justify-content: space-between;
+}
+/* Final del contenedor de los items del carrito*/
+
+/** Inicio del resumen de compra */
+.resumenCompra {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+}
+.tituloResumen {
+    display: flex;
+    justify-content: center;
+}
+.resumenCompra h3{
+    margin: 0px;
+    margin-bottom: 10px;
+}
+.suma, .iva, .envio, .total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+/** Final del resumen de compra */
