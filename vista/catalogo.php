@@ -1,17 +1,19 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo</title>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="contenedorlogo">
-            <img class=" logo"src="../imagenes/logoDistriliquidos.png" alt="">
+            <img class=" logo" src="../imagenes/logoDistriliquidos.png" alt="">
         </div>
         <div class="nombreEmpresa">Distriliquidos MV</div>
         <div class="menu-toggle" id="mobile-menu">
@@ -105,8 +107,8 @@
         </div>
 
         <div class="contenedorCatalogo">
-        <?php
-            include ("../modelo/conexion.php");
+            <?php
+            include("../modelo/conexion.php");
 
             // Iniciar la sesión si no está iniciada
             if (!isset($_SESSION['productosCarrito'])) {
@@ -132,14 +134,14 @@
             $sql = $conexion->query("select * from productos");
             while ($datos = $sql->fetch_object()) {
             ?>
-                <form method="post" class="producto <?=$datos->tipoBebida?>" action="catalogo.php">
-                    <input class="idProducto" name="idProducto" type="hidden" value="<?=$datos->idProducto?>">
-                    <img src="../<?=$datos->rutaImagen?>" alt="Producto 1" class="imgProducto">
-                    <h3 class="tituloProducto"><?=$datos->nombre?></h3>
-                    <p class="precioProducto">$<?=$datos->precioVenta?></p>
+                <form method="post" class="producto <?= $datos->tipoBebida ?>" action="catalogo.php">
+                    <input class="idProducto" name="idProducto" type="hidden" value="<?= $datos->idProducto ?>">
+                    <img src="../<?= $datos->rutaImagen ?>" alt="Producto 1" class="imgProducto">
+                    <h3 class="tituloProducto"><?= $datos->nombre ?></h3>
+                    <p class="precioProducto">$<?= $datos->precioVenta ?></p>
                     <button class="btnAgregar" name="btnAgregar">Agregar</button>
                 </form>
-                <?php }
+            <?php }
             ?>
         </div><!-- final del contenedor del catalogo -->
 
@@ -155,7 +157,7 @@
         <span class="columnasFooter">
             <div class="columnaFooter">
                 <h3>Entérate de novedades</h3>
-                
+
                 <div class="contenidoColumnaFooter">
                     <label for="">
                         Enterate de promociones, descuentos, campañas y mucho màs
@@ -184,7 +186,7 @@
 
 
             <div class="columnaFooter">
-            <h3>Sobre nosotros</h3>
+                <h3>Sobre nosotros</h3>
                 <span class="contenidoColumnaFooter">
                     <ul>
                         <li>Misión</li>
@@ -195,7 +197,7 @@
             </div>
 
             <div class="columnaFooter">
-            <h3>Políticas</h3>
+                <h3>Políticas</h3>
                 <span class="contenidoColumnaFooter">
                     <ul>
                         <li>Seguridad de tu información</li>
@@ -208,14 +210,25 @@
         </span>
     </footer>
     <!-- FINAL DEL FOOTER -->
-    
+
     <!--Aquí importamos los estilos css-->
     <script src="./style.js"></script>
     <!--En header.js se programa el boton hamburguesa-->
     <script src="./header.js"></script>
     <script src="https://kit.fontawesome.com/9371cd63b1.js" crossorigin="anonymous"></script>
     <script>
+        //Yoiner Arreglo de checkbox
         function filtrarCheckbox(subcategoria) {
+            // Desactiva todos los checkboxes
+            var checkBoxes = document.querySelectorAll('.checkBox');
+            checkBoxes.forEach(function(checkBox) {
+                checkBox.checked = false;
+            });
+
+            // Activa el checkbox seleccionado
+            var checkboxSeleccionado = document.getElementById(subcategoria);
+            checkboxSeleccionado.checked = true;
+
             // Obtén todos los productos
             var productos = document.querySelectorAll('.producto');
 
@@ -229,20 +242,18 @@
             productosFiltrados.forEach(function(productoFiltrado) {
                 productoFiltrado.style.display = 'block';
             });
-
-            var checkBoxes = document.querySelectorAll('.checkBox');
-            
         }
-        function quitarChecked(){
+
+
+        function quitarChecked() {
             var checkBoxes = document.querySelectorAll('.checkBox');
             checkBoxes.forEach(function(checkBox) {
-                //checkBox.selected = '';//
-                if (checkBox.checked) {
-                    checkBox.ckecked = false;
-                }
+                checkBox.checked = false;
             });
         }
+        //fin
     </script>
-    
+
 </body>
+
 </html>
