@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo</title>
 
 </head>
+
 <body>
     <nav class="navbar">
         <div class="contenedorlogo">
-            <img class=" logo"src="../imagenes/logoDistriliquidos.png" alt="">
+            <img class=" logo" src="../imagenes/logoDistriliquidos.png" alt="">
         </div>
         <div class="nombreEmpresa">Distriliquidos MV</div>
         <div class="menu-toggle" id="mobile-menu">
@@ -50,9 +52,9 @@
 
         <!-- Contenedor para la tabla de inventario -->
         <div id="tablaInventarioContainer"></div>
-
+        <!--Yoiner, nuevo boton-->
+        <button onclick="eliminarRegistrosSeleccionados()">Eliminar seleccionados</button>
         <script>
-
             function irRegistrarProducto(idProducto) {
                 // Redirige al formulario donde se registran los productos
                 window.location.href = `../vista/adminIngresoProductos.php`;
@@ -70,36 +72,76 @@
                 xhr.open("GET", "../controlador/listarInventario.php", true);
                 xhr.send();
             }
-
-            function confirmarBorrar(idProducto) {
-                if (confirm('¿Estás seguro de que deseas borrar este registro?')) {
-                    borrarRegistro(idProducto);
-                }
-            }
-
-            function borrarRegistro(idProducto) {
-                // Hacer una solicitud al servidor para borrar el registro
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        // Manejar la respuesta del servidor
-                        alert(this.responseText);
-                        // Recargar el inventario después de borrar
-                        cargarInventario();
-                    }
-                };
-                xhr.open("GET", "../controlador/eliminarRegistro.php?id=" + idProducto, true);
-                xhr.send();
-            }
+            
             function editarRegistro(idProducto) {
                 // Redirige a adminEditarProducto.php con el ID del producto como parámetro
                 window.location.href = `../vista/adminEditarProducto.php?id=${idProducto}`;
             }
+
+            //Funcion para eliminar los registros seleccionado
+            //Yoiner, nuevo eliminar y confnfirmar
+            // Función para eliminar los registros seleccionados
+            function eliminarRegistrosSeleccionados() {
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                var seleccionados = [];
+
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        seleccionados.push(checkbox.value);
+                    }
+                });
+
+                if (seleccionados.length === 0) {
+                    alert("No hay ningún registro seleccionado.");
+                } else {
+                    // Convertir el array de IDs a una cadena JSON
+                    var idsJSON = JSON.stringify(seleccionados);
+                    confirmarEliminar(idsJSON);
+                }
+            }
+
+            // Función para mostrar confirmación de eliminación
+            function confirmarEliminar(idsJSON) {
+                if (confirm('¿Estás seguro de que deseas eliminar los registros seleccionados?')) {
+                    // Hacer una solicitud al servidor para borrar los registros seleccionados
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            // Manejar la respuesta del servidor
+                            alert(this.responseText);
+                            // Recargar el inventario después de borrar
+                            cargarInventario();
+                        }
+                    };
+                    xhr.open("GET", "../controlador/eliminarRegistro.php?ids=" + idsJSON, true);
+                    xhr.send();
+                }
+            }
+
+
+            // Función para eliminar los registros seleccionados
+            function eliminarRegistros(seleccionados) {
+                seleccionados.forEach(function(idProducto) {
+                    // Hacer una solicitud al servidor para borrar el registro
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            // Manejar la respuesta del servidor
+                            alert(this.responseText);
+                            // Recargar el inventario después de borrar
+                            cargarInventario();
+                        }
+                    };
+                    xhr.open("GET", "../controlador/eliminarRegistro.php?id=" + idProducto, true);
+                    xhr.send();
+                });
+            }
+            //Fin de eliminr y confirmar
         </script>
     </div>
 
-        <!-- INICIO DEL FOOTER -->
-        <footer class="footer">
+    <!-- INICIO DEL FOOTER -->
+    <footer class="footer">
         <div class="redesSociales">
             <i class="fa-brands fa-facebook"></i>
             <i class="fa-brands fa-pinterest"></i>
@@ -108,7 +150,7 @@
         <span class="columnasFooter">
             <div class="columnaFooter">
                 <h3>Entérate de novedades</h3>
-                
+
                 <div class="contenidoColumnaFooter">
                     <label for="">
                         Enterate de promociones, descuentos, campañas y mucho màs
@@ -137,7 +179,7 @@
 
 
             <div class="columnaFooter">
-            <h3>Sobre nosotros</h3>
+                <h3>Sobre nosotros</h3>
                 <span class="contenidoColumnaFooter">
                     <ul>
                         <li>Misión</li>
@@ -148,7 +190,7 @@
             </div>
 
             <div class="columnaFooter">
-            <h3>Políticas</h3>
+                <h3>Políticas</h3>
                 <span class="contenidoColumnaFooter">
                     <ul>
                         <li>Seguridad de tu información</li>
@@ -161,11 +203,12 @@
         </span>
     </footer>
     <!-- FINAL DEL FOOTER -->
-    
+
     <!--Aquí importamos los estilos css-->
     <script src="./style.js"></script>
     <!--En header.js se programa el boton hamburguesa-->
     <script src="./header.js"></script>
     <script src="https://kit.fontawesome.com/9371cd63b1.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
