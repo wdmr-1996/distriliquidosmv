@@ -10,7 +10,7 @@ $resultado = $conexion->query($query);
 if ($resultado->num_rows > 0) {
     echo "<table border='1'>
             <tr>
-                <th></th><!-- Columna para el botón Borrar -->
+                <th></th><!-- Columna para el checkbox -->
                 <th></th> <!-- Columna para el botón Editar -->
                 <th>ID</th>
                 <th>Tipo de Bebida</th>
@@ -29,7 +29,7 @@ if ($resultado->num_rows > 0) {
     while ($fila = $resultado->fetch_assoc()) {
         echo "<tr>
                 <td>
-                    <button onclick='confirmarBorrar({$fila['idProducto']})'>Borrar</button>
+                    <input type='checkbox' value='{$fila['idProducto']}' onclick='mostrarBotonEliminar()'>
                 </td>
                 <td>
                     <button onclick='editarRegistro({$fila['idProducto']})'>Editar</button>
