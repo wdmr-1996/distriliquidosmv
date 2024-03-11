@@ -45,66 +45,44 @@ session_start();
         </div>
     </nav>
 
-
     <div class="cuerpoCentral">
-        <div class="contenedorFiltro">
-            <article class="categoria">
-                <h3>Tipo de Bebida</h3>
-                <ul class="subcategorias" id="tipoBebida">
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="agua" onclick="filtrarCheckbox('agua')">Agua
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="hidratante" onclick="filtrarCheckbox('hidratante')">Hidratantes
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="gaseosa" onclick="filtrarCheckbox('gaseosa')">Gaseosas
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="gaseosas-cero-calorias" onclick="filtrarCheckbox('gaseosas-cero-calorias')">Cero calorias
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="cerveza-licor" onclick="filtrarCheckbox('cerveza-licor')">Cervezas y licores
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="energizante" onclick="filtrarCheckbox('energizante')">Energizantes
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="jugos-refrescos" onclick="filtrarCheckbox('jugos-refrescos')">Jugos y refrescos
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="te-infusiones" onclick="filtrarCheckbox('te-infusiones')">Te e infusiones
-                        </label>
-                    </li>
-                    <li>
-                        <label for="">
-                            <input class="checkBox" type="checkbox" id="soda-mezclador" onclick="filtrarCheckbox('soda-mezclador')">sodas y mezcladores
-                        </label>
-                    </li>
-                    <li>
-                        <label for="borrarFiltros">
-                            <input class="checkBox" type="checkbox" id="borrarFiltros" onclick="quitarChecked()">Borrar filtros
-                        </label>
-                    </li>
-                    <!-- Agrega más subcategorías según sea necesario -->
-                </ul>
-            </article>
-        </div>
+        <form class="contenedorFiltro">
+            <label for="agua">
+                <input class="filtro" name="filtro" type="radio" id="agua" value='agua'>Agua
+            </label>
+
+            <label for="hidratante">
+                <input class="filtro" name="filtro" type="radio" id="hidratante" value='hidratante'>Hidratante
+            </label>
+
+            <label for="gaseosa">
+                <input class="filtro" name="filtro" type="radio" id="gaseosa" value='gaseosa'>Gaseosa
+            </label>
+
+            <label for="gaseosas-cero-calorias">
+                <input class="filtro" name="filtro" type="radio" id="gaseosas-cero-calorias" value='gaseosas-cero-calorias'>Cero calorias
+            </label>
+
+            <label for="cerveza-licor">
+                <input class="filtro" name="filtro" type="radio" id="cerveza-licor" value='cerveza-licor'>Cervezas y licores
+            </label>
+            
+            <label for="energizante">
+                <input class="filtro" name="filtro" type="radio" id="energizante" value='energizante'>Energizantes
+            </label>
+
+            <label for="jugos-refrescos">
+                <input class="filtro" name="filtro" type="radio" id="jugos-refrescos" value='jugos-refrescos'>Jugos y refrescos
+            </label>
+
+            <label for="te-infusiones">
+                <input class="filtro" name="filtro" type="radio" id="te-infusiones" value='te-infusiones'>Te e infusiones
+            </label>
+
+            <label for="soda-mezclador">
+                <input class="filtro" name="filtro" type="radio" id="soda-mezclador" value='soda-mezclador'>Sodas y mezcladores
+            </label>
+        </form>
 
         <div class="contenedorCatalogo">
             <?php
@@ -125,7 +103,7 @@ session_start();
 
                 // Imprimir el contenido de la sesión para verificar
                 //var_dump($_SESSION['productosCarrito']);
-
+            
                 // Puedes redirigir a otra página después de agregar al carrito si es necesario
                 // header("Location: otra_pagina.php");
             }
@@ -133,7 +111,11 @@ session_start();
             // Obtener datos de la base de datos
             $sql = $conexion->query("select * from productos");
             while ($datos = $sql->fetch_object()) {
+<<<<<<< Updated upstream
             ?>
+=======
+                ?>
+>>>>>>> Stashed changes
                 <form method="post" class="producto <?= $datos->tipoBebida ?>" action="catalogo.php">
                     <input class="idProducto" name="idProducto" type="hidden" value="<?= $datos->idProducto ?>">
                     <img src="../<?= $datos->rutaImagen ?>" alt="Producto 1" class="imgProducto">
@@ -166,7 +148,8 @@ session_start();
 
                     <input type="checkbox" class="inputCheckbox">
                     <label for="">
-                        Autorizo el tratamiento de mis datos personales de acuerdo con la <a href="https://www.ejemplo.com">Política de Tratamiento de datos personales</a>
+                        Autorizo el tratamiento de mis datos personales de acuerdo con la <a
+                            href="https://www.ejemplo.com">Política de Tratamiento de datos personales</a>
                     </label>
 
                     <button type="submit" class="footer-button">Suscribirse</button>
@@ -217,6 +200,7 @@ session_start();
     <script src="./header.js"></script>
     <script src="https://kit.fontawesome.com/9371cd63b1.js" crossorigin="anonymous"></script>
     <script>
+<<<<<<< Updated upstream
         //Yoiner Arreglo de checkbox
         function filtrarCheckbox(subcategoria) {
             // Desactiva todos los checkboxes
@@ -231,12 +215,17 @@ session_start();
 
             // Obtén todos los productos
             var productos = document.querySelectorAll('.producto');
+=======
+        // Obtener todos los inputs del formulario 'categoria'
+        var filtros = document.querySelectorAll('.filtro');
+>>>>>>> Stashed changes
 
-            // Oculta todos los productos
-            productos.forEach(function(producto) {
-                producto.style.display = 'none';
-            });
+        // Añadir un evento de cambio a cada input de clase filtro
+        filtros.forEach(function (filtro) {
+            filtro.addEventListener('change', function () {
+                var tipoProducto = this.value;
 
+<<<<<<< Updated upstream
             // Muestra solo los productos que tienen la clase deseada
             var productosFiltrados = document.querySelectorAll('.' + subcategoria);
             productosFiltrados.forEach(function(productoFiltrado) {
@@ -254,6 +243,24 @@ session_start();
         //fin
     </script>
 
+=======
+                // Obtén todos los productos
+                var productos = document.querySelectorAll('.contenedorCatalogo .producto');
+
+                // Oculta todos los productos
+                productos.forEach(function (producto) {
+                    producto.style.display = 'none';
+                });
+
+                // Mostrar los productos de la categoría seleccionada
+                var productosFiltrados = document.querySelectorAll('.contenedorCatalogo .producto.' + tipoProducto);
+                productosFiltrados.forEach(function (producto) {
+                    producto.style.display = 'block';
+                });
+            });
+        });
+    </script>
+>>>>>>> Stashed changes
 </body>
 
 </html>

@@ -452,47 +452,15 @@ body {
 /* INICIO DEL FILTRO DEL CATALOGO */
 .contenedorFiltro {
     display: flex;
-    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 25px;
     background-color:#ddd;
-    padding-top: 20px;
-
-    width: 160px;
+    min-width: max-content;
 }
-/* Estilos para cada categoría */
-.categoria {
-    padding-left: 12px;
-}
-/* Estilos para los títulos de categoría */
-.categoria h3 {
-    font-size:smaller;
-    margin-top: 0px;
-    margin-bottom: 8px;
-    color: #333;
-}
-/* Estilos para las subcategorías */
-.subcategorias {
-    list-style: none;
-    padding: 0px;
-    margin: 0px;
-}
-/* Estilos para cada ítem de subcategoría */
-.subcategorias li {
-    margin-bottom: 10px;
-}
-/* Estilos para las casillas de verificación */
-.subcategorias li label input{
-    margin-right: 2px;
-}
-/* Estilos para los enlaces de subcategoría */
-.subcategorias li label {
-    cursor: pointer;
-    color: #333;
-    font-size:smaller;
-    transition: color 0.3s ease;
-}
-/* Estilos al pasar el mouse sobre los enlaces de subcategoría */
-.subcategorias li label:hover {
-    color: #007BFF;
+.contenedorFiltro label{
+    width:fit-content;
+    font-size: smaller;
 }
 /* FINAL DEL FILTRO DEL CATALOGO*/
 

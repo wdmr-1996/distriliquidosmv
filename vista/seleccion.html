@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Selección Múltiple</title>
+    <!-- Enlaza tus estilos CSS si los tienes -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <h1>Encuesta de Selección Múltiple</h1>
+
+    <div id="pregunta">
+        <p>¿Cuál es la capital de Francia?</p>
+        <form id="formulario">
+            <input type="radio" id="opcion1" name="respuesta" value="paris">
+            <label for="opcion1">París</label><br>
+            <input type="radio" id="opcion2" name="respuesta" value="roma">
+            <label for="opcion2">Roma</label><br>
+            <input type="radio" id="opcion3" name="respuesta" value="londres">
+            <label for="opcion3">Londres</label><br>
+            <input type="radio" id="opcion4" name="respuesta" value="madrid">
+            <label for="opcion4">Madrid</label><br>
+        </form>
+        <button onclick="verificarRespuesta()">Verificar</button>
+    </div>
+
+    <!-- Agrega tu script JavaScript al final del body -->
+    <script>
+        function verificarRespuesta() {
+            var opciones = document.getElementsByName('respuesta');
+            var respuestaSeleccionada = "";
+
+            opciones.forEach(function(opcion) {
+                if (opcion.checked) {
+                    respuestaSeleccionada = opcion.value;
+                }
+            });
+
+            // Comparar la respuesta seleccionada con la respuesta correcta
+            if (respuestaSeleccionada === "paris") {
+                alert("¡Respuesta correcta!");
+            } else {
+                alert("Respuesta incorrecta. La capital de Francia es París.");
+            }
+        }
+    </script>
+</body>
+</html>

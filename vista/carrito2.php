@@ -1,9 +1,8 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +11,10 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <nav class="navbar">
         <div class="contenedorlogo">
-            <img class=" logo" src="../imagenes/logoDistriliquidos.png" alt="">
+            <img class=" logo"src="../imagenes/logoDistriliquidos.png" alt="">
         </div>
         <div class="nombreEmpresa">Distriliquidos MV</div>
         <div class="menu-toggle" id="mobile-menu">
@@ -50,69 +48,59 @@ session_start();
 
     <!-- INICIO DEL CARRITO DE COMPRAS -->
     <article class="bodyCarrito">
-
+        
         <div class="carritoContainer">
             <?php
-            include("../modelo/conexion.php");
-            //include("..\controlador\carritoEliminar.php");
-            //include("../controlador/plusMinus.php");
-            
-            // Verificar si hay productos en el carrito
-            if (!empty($_SESSION['productosCarrito'])) {
-                // Obtener los productos del carrito desde la base de datos
-                $productosCarrito = implode(",", $_SESSION['productosCarrito']);
-                $sql = $conexion->query("SELECT * FROM productos WHERE idProducto IN ($productosCarrito)");
+                include("../modelo/conexion.php");
+                //include("..\controlador\carritoEliminar.php");
+                //include("../controlador/plusMinus.php");
 
-                while ($datos = $sql->fetch_object()) {
+                // Verificar si hay productos en el carrito
+                if (!empty($_SESSION['productosCarrito'])) {
+                    // Obtener los productos del carrito desde la base de datos
+                    $productosCarrito = implode(",", $_SESSION['productosCarrito']);
+                    $sql = $conexion->query("SELECT * FROM productos WHERE idProducto IN ($productosCarrito)");
 
-                    // Crear un array asociativo para cada producto
-                    $itemCarrito = array(
-                        'id' => $datos->idProducto,
-                        'nombre' => $datos->nombre,
-                        'precio' => $datos->precioVenta,
-                        'cantidad' => 1, // Puedes inicializar la cantidad como desees
-                        'subtotal' => 0, // Puedes inicializar el subtotal como desees
-                    );
-                    // Calcular el subtotal (por ejemplo, cantidad * precio)
-                    $itemCarrito['subtotal'] = $itemCarrito['cantidad'] * $itemCarrito['precio'];
-
-                    // Agregar el array del producto al array principal
-                    $itemsCarrito[] = $itemCarrito;
+                    while ($datos = $sql->fetch_object()) {
+                        // Crear un array asociativo para cada producto
+                        $itemCarrito = array(
+                            'id' => $datos->idProducto,
+                            'nombre' => $datos->nombre,
+                            'precio' => $datos->precioVenta,
+                            'cantidad' => 1,
+                            'subtotal' => 0,
+                        );
+                        // Calcular el subtotal (por ejemplo, cantidad * precio)
+                        $itemCarrito['subtotal'] = $itemCarrito['cantidad'] * $itemCarrito['precio'];
+                        
+                        // Agregar el array del producto al array principal
+                        $itemsCarrito[] = $itemCarrito;
                     ?>
-
-                    <form class="productoCarrito" method="post" action="../controlador/plusMinus.php">
+                    
+                    <form class="productoCarrito" method="post" action="../controlador/carritoEliminar.php">
                         <!---action="../controlador/carritoEliminar.php"-->
-                        <!---action="../controlador/plusMinus.php"-->
-                        <input type="hidden" name="idProducto" value="<?= $datos->idProducto ?>">
+                        <input type="hidden" name="idProducto" value="<?=$datos->idProducto?>">    
                         <section>
-                            <img src="../<?= $datos->rutaImagen ?>" alt="">
+                            <img src="../<?=$datos->rutaImagen?>" alt="">
                         </section>
                         <article>
-                            <span class="productoNombre">
-                                <?= $datos->nombre ?>
-                            </span>
-                            <span class="precio">Unidad: $
-                                <?= $datos->precioVenta ?>
-                            </span>
+                            <span class="productoNombre"><?=$datos->nombre?></span>
+                            <span class="precio">Unidad: $<?=$datos->precioVenta?></span>
                             <div class="cantidadProducto">
-                                <button type="submit" class="minus" data-id="<?= $datos->idProducto ?>" name="btnMinus">-</button>
-                                <span class="cantidadNumero" id="cantidadNumero<?= $datos->idProducto ?>">
-                                    <?= $_SESSION['itemsCarrito'][$datos->idProducto]['cantidad'] ?? 1 ?>
-                                </span>
-                                <button type="submit" class="plus" data-id="<?= $datos->idProducto ?>" name="btnPlus">+</button>
+                                <button type="submit" class="minus" data-id="<?=$datos->idProducto?>" name="btnMinus">-</button>
+                                <span type="submit" class="cantidadNumero" id="cantidadNumero<?=$datos->idProducto?>">1</span>
+                                <button class="plus" data-id="<?=$datos->idProducto?>" name="btnPlus">+</button>
                             </div>
                         </article>
                         <section class="subtotal">
-                            <span class="subTotalProducto">
-                                <?= $itemCarrito['subtotal'] ?> <!-- Usar $itemCarrito en lugar de $item -->
-                            </span>
+                            <span class="subTotalProducto">$10000,00</span>
                         </section>
                         <button type="submit" class="btnEliminarItem" name="btnEliminarItem">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </form>
-                    <?php
-                }
+            <?php
+                    }
                 // Almacena el array principal en la sesión
                 $_SESSION['itemsCarrito'] = $itemsCarrito;
 
@@ -125,21 +113,18 @@ session_start();
                     echo '<p>Subtotal: $' . $item['subtotal'] . '</p>';
                     echo '<hr>'; // Separador entre productos
                 }
+                
 
-
-            } else {
-                echo "<p>El carrito está vacío.</p>";
-            }
-
+                } else {
+                    echo "<p>El carrito está vacío.</p>";
+                }
             ?>
         </div><!-- Final de los items del carrito -->
 
 
         <!--Inicio del resumen de compra del carrito--->
         <div class="resumenCompra">
-            <section class="tituloResumen">
-                <h3>Resumen de compra</h3>
-            </section>
+            <section class="tituloResumen"><h3>Resumen de compra</h3></section>
             <div class="suma">
                 <span>Subtotal:</span>
                 <span id="subtotalValor">$0.00</span>
@@ -157,7 +142,7 @@ session_start();
                 <span id="totalValor">$0.00</span>
             </div>
         </div>
-        <!--Final del resumen de compras del carrito--->
+    <!--Final del resumen de compras del carrito--->
 
     </article>
     <!-- FINAL DEL CARRITO DE COMPRAS -->
@@ -172,7 +157,7 @@ session_start();
         <span class="columnasFooter">
             <div class="columnaFooter">
                 <h3>Entérate de novedades</h3>
-
+                
                 <div class="contenidoColumnaFooter">
                     <label for="">
                         Enterate de promociones, descuentos, campañas y mucho màs
@@ -181,8 +166,7 @@ session_start();
 
                     <input type="checkbox" class="inputCheckbox">
                     <label for="">
-                        Autorizo el tratamiento de mis datos personales de acuerdo con la <a
-                            href="https://www.ejemplo.com">Política de Tratamiento de datos personales</a>
+                        Autorizo el tratamiento de mis datos personales de acuerdo con la <a href="https://www.ejemplo.com">Política de Tratamiento de datos personales</a>
                     </label>
 
                     <button type="submit" class="footer-button">Suscribirse</button>
@@ -202,7 +186,7 @@ session_start();
 
 
             <div class="columnaFooter">
-                <h3>Sobre nosotros</h3>
+            <h3>Sobre nosotros</h3>
                 <span class="contenidoColumnaFooter">
                     <ul>
                         <li>Misión</li>
@@ -213,7 +197,7 @@ session_start();
             </div>
 
             <div class="columnaFooter">
-                <h3>Políticas</h3>
+            <h3>Políticas</h3>
                 <span class="contenidoColumnaFooter">
                     <ul>
                         <li>Seguridad de tu información</li>
@@ -226,13 +210,11 @@ session_start();
         </span>
     </footer>
     <!-- FINAL DEL FOOTER -->
-
+    
     <!--Aquí importamos los estilos css-->
     <script src="./style.js"></script>
     <!--En header.js se programa el boton hamburguesa-->
     <script src="./header.js"></script>
     <script src="https://kit.fontawesome.com/9371cd63b1.js" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
